@@ -127,3 +127,4 @@ C:\Users\aparn\movieseatbookingproject\MovieSeatBooking\bin\Debug\net10.0\MovieS
 C:\Users\aparn\movieseatbookingproject\MovieSeatBooking\obj\Debug\net10.0\compressed\9pwu211u8z-{0}-3x70ft7pb9-3x70ft7pb9.gz
 C:\Users\aparn\movieseatbookingproject\MovieSeatBooking\obj\Debug\net10.0\compressed\opzimnbilq-{0}-6lo3um49wc-6lo3um49wc.gz
 C:\Users\aparn\movieseatbookingproject\MovieSeatBooking\obj\Debug\net10.0\compressed\dpoghkpbif-{0}-0dh3frx98d-0dh3frx98d.gz
+C:\Users\aparn\movieseatbookingproject\MovieSeatBooking\obj\Debug\net10.0\MovieSeatBooking.sourcelink.json
