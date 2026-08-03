@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Movie Seat Booking</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Header -->
+
+        <header>
+
+            <div>
+                <h1>🎬 Movie Seat Booking</h1>
+                <p class="subtitle">Backend Seat Reservation Demo</p>
+            </div>
+
+            <div class="show-info">
+
+                <h2>Spider-Man: No Way Home</h2>
+
+                <span>Screen 1 • 7:00 PM</span>
+
+            </div>
+
+        </header>
+
+        <!-- Dashboard -->
+
+        <div class="dashboard">
+
+            <div class="card available-card">
+
+                <h2 id="availableCount">0</h2>
+
+                <p>Available</p>
+
+            </div>
+
+            <div class="card held-card">
+
+                <h2 id="heldCount">0</h2>
+
+                <p>Held</p>
+
+            </div>
+
+            <div class="card booked-card">
+
+                <h2 id="bookedCount">0</h2>
+
+                <p>Booked</p>
+
+            </div>
+
+        </div>
+
+        <!-- Screen -->
+
+        <div class="screen-wrapper">
+
+            <div class="screen">
+
+                SCREEN
+
+            </div>
+
+        </div>
+
+        <!-- Legend -->
+
+        <div class="legend">
+
+            <div>
+
+                <span class="legend-box available"></span>
+
+                Available
+
+            </div>
+
+            <div>
+
+                <span class="legend-box held"></span>
+
+                Held
+
+            </div>
+
+            <div>
+
+                <span class="legend-box booked"></span>
+
+                Booked
+
+            </div>
+
+            <div>
+
+                <span class="legend-box selected-box"></span>
+
+                Selected
+
+            </div>
+
+        </div>
+
+        <!-- Seat Grid -->
+
+        <div id="seatContainer" class="seat-grid">
+
+        </div>
+
+        <!-- Booking Panel -->
+
+        <div class="booking-panel">
+
+            <div class="selected">
+
+                <h3>Selected Seat</h3>
+
+                <h2 id="selectedSeat">None</h2>
+
+            </div>
+
+            <div class="timer">
+
+                <h3>Hold Countdown</h3>
+
+                <h2 id="countdown">--:--</h2>
+
+            </div>
+
+        </div>
+
+        <!-- Buttons -->
+
+        <div class="button-area">
+
+            <button id="holdBtn">
+
+                Hold Seat
+
+            </button>
+
+            <button id="confirmBtn">
+
+                Confirm Booking
+
+            </button>
+
+        </div>
+
+        <!-- Toast Notification -->
+
+        <div id="toast" class="toast">
+
+            Message
+
+        </div>
+
+    </div>
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
