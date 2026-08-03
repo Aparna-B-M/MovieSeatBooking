@@ -48,6 +48,8 @@ app.MapGet("/weatherforecast", () =>
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+       // Apply pending migrations
+    context.Database.Migrate();
     DbInitializer.Seed(context);
 }
 app.UseSwagger();
