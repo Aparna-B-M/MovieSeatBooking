@@ -1,0 +1,42 @@
+services:
+
+  postgres:
+    image: postgres:16
+
+    container_name: movie-postgres
+
+    restart: always
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: MovieSeatBookingDB
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  movie-api:
+
+    build: .
+
+    container_name: movie-api
+
+    restart: always
+
+    depends_on:
+      - postgres
+
+    ports:
+      - "5198:8080"
+
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+
+      ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=MovieSeatBookingDB;Username=postgres;Password=postgres
+
+volumes:
+
+  postgres_data:
