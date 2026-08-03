@@ -2,7 +2,7 @@
 // Movie Seat Booking System
 // ===========================================
 
-const showId = "4fc6f418-2850-4725-9ef4-d827f647cd96";
+const showId = "02adf7bb-4608-4c67-8ead-4a83ff9da251";
 
 let selectedSeats = [];
 let holdExpiryTime = null;
