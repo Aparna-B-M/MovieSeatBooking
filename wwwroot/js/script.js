@@ -5,6 +5,7 @@
 const showId = "02adf7bb-4608-4c67-8ead-4a83ff9da251";
 
 let selectedSeats = [];
+let heldSeats = [];
 let holdExpiryTime = null;
 
 // HTML Controls
@@ -88,16 +89,15 @@ async function loadSeats(){
         div.classList.add("seat");
 
         div.innerHTML=seat.seatNumber;
-        if (selectedSeats.some(s => s.seatNumber === seat.seatNumber)) {
-    div.classList.add("selected");
-}
 
         switch(seat.status){
 
             case "AVAILABLE":
 
                 div.classList.add("available");
-
+ if (selectedSeats.some(s => s.seatNumber === seat.seatNumber)) {
+            div.classList.add("selected");
+        }
                 break;
 
             case "HELD":
@@ -209,6 +209,13 @@ function updateCountdown(){
         countdown.innerHTML="Expired";
 
         holdExpiryTime=null;
+          heldSeats = [];
+    selectedSeats = [];
+
+    selectedSeatLabel.innerHTML = "None";
+
+    loadSeats();
+    loadAvailability();
 
         return;
 
@@ -260,6 +267,12 @@ async function holdSeat() {
             const message = await response.text();
 
             showToast(message, false);
+             selectedSeats = [];
+             heldSeats = [];
+    selectedSeatLabel.innerHTML = "None";
+
+    await loadSeats();
+    await loadAvailability();
 
             return;
         }
@@ -269,9 +282,15 @@ async function holdSeat() {
         holdExpiryTime = new Date(result.expiresAt);
 
         showToast("Seat held successfully.");
+   // Save held seats
+heldSeats = [...selectedSeats];
 
-        loadSeats();
-        loadAvailability();
+// Clear current selection
+selectedSeats = [];
+selectedSeatLabel.innerHTML = "Held: " + heldSeats.map(s => s.seatNumber).join(", ");
+
+await loadSeats();
+await loadAvailability();
 
     }
     catch {
@@ -289,13 +308,15 @@ document.getElementById("confirmBtn").addEventListener("click", confirmBooking);
 
 async function confirmBooking() {
 
-    if (selectedSeats.length === 0){
+   const seatsToConfirm =
+    heldSeats.length > 0 ? heldSeats : selectedSeats;
 
-        showToast("Please select a seat.", false);
+if (seatsToConfirm.length === 0) {
 
-        return;
+    showToast("Please select a seat.", false);
 
-    }
+    return;
+}
 
     try {
 
@@ -308,7 +329,7 @@ async function confirmBooking() {
     },
     body: JSON.stringify({
         showId: showId,
-         seatNumbers: selectedSeats.map(s => s.seatNumber),
+         seatNumbers: seatsToConfirm.map(s => s.seatNumber),
         idempotencyKey: idempotencyKey
     })
 });
@@ -319,6 +340,12 @@ async function confirmBooking() {
 
             showToast(message, false);
 
+ selectedSeats = [];
+ heldSeats = [];
+    selectedSeatLabel.innerHTML = "None";
+
+    await loadSeats();
+    await loadAvailability();
             return;
 
         }
@@ -326,7 +353,7 @@ async function confirmBooking() {
         showToast("Booking confirmed!");
 
         selectedSeats = [];
-
+        heldSeats = [];
         holdExpiryTime = null;
 
         selectedSeatLabel.innerHTML = "None";
