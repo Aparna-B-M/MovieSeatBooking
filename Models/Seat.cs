@@ -15,6 +15,6 @@ public class Seat
 
     public DateTime? HoldUntil { get; set; }
     
-     [Timestamp]
-    public byte[]? RowVersion { get; set; }
+    [Timestamp]
+public uint RowVersion { get; set; }
 }
